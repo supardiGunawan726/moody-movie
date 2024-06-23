@@ -14,9 +14,9 @@ export default async function Movie(props: PageProps) {
           className="object-cover"
           fill
         />
-        <div className="container mx-auto">
-          <div className="absolute bottom-8 flex items-end gap-8">
-            <figure className="relative w-[200px] aspect-[9/16] shadow-lg rounded-md overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="absolute bottom-4 flex items-end gap-8 md:bottom-8">
+            <figure className="relative w-[60px] aspect-[9/16] shadow-lg rounded-md overflow-hidden md:w-[100px] lg:w-[200px]">
               <Image
                 src={getMovieImageUrl(movie.poster_path, "w500")}
                 alt={`poster of ${movie.original_title} movie`}
@@ -25,7 +25,7 @@ export default async function Movie(props: PageProps) {
               />
             </figure>
             <div className="relative z-10">
-              <h1 className="font-sans text-6xl font-semibold line-clamp-3 leading-tight">
+              <h1 className="font-sans text-xl font-semibold line-clamp-2 leading-tight md:text-3xl lg:text-6xl">
                 {movie.original_title} ({movie.release_date.split("-")[0]})
               </h1>
               <p>{movie.tagline}</p>
@@ -33,7 +33,7 @@ export default async function Movie(props: PageProps) {
           </div>
         </div>
       </header>
-      <section className="container mx-auto grid gap-2">
+      <section className="container mx-auto grid gap-2 px-4">
         <header>
           <p>Genres: {movie.genres.map((genre) => genre.name).join(", ")}</p>
           <p>Duration: {renderDuration(movie.runtime)}</p>

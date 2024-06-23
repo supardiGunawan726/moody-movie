@@ -22,12 +22,12 @@ export default async function Movie(props: PageProps) {
   }
 
   return (
-    <main className="grid place-items-center min-h-screen">
+    <main className="grid place-items-center min-h-screen px-4">
       <section className="text-center grid gap-8 max-w-[1000px]">
         <h1 className="text-3xl font-sans font-semibold">
           MOVIES THAT MIGHT FIT WITH YOUR MOOD
         </h1>
-        <ul className="grid grid-cols-5 gap-4">
+        <ul className="grid grid-cols-3 gap-4 md:grid-cols-5">
           {movies.map((movie) => (
             <li key={movie.id}>
               <MovieItem movie={movie} />
