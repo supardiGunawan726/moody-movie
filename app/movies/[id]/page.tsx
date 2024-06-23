@@ -18,7 +18,7 @@ export default async function Movie(props: PageProps) {
           <div className="absolute bottom-8 flex items-end gap-8">
             <figure className="relative w-[200px] aspect-[9/16] shadow-lg rounded-md overflow-hidden">
               <Image
-                src={getMovieImageUrl(movie.poster_path)}
+                src={getMovieImageUrl(movie.poster_path, "w500")}
                 alt={`poster of ${movie.original_title} movie`}
                 className="object-cover"
                 fill
