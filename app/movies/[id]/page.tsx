@@ -15,7 +15,7 @@ export default async function Movie(props: PageProps) {
           fill
         />
         <div className="container mx-auto px-4">
-          <div className="absolute bottom-4 flex items-end gap-8 md:bottom-8">
+          <div className="absolute bottom-4 flex items-end gap-2 md:gap-8 md:bottom-8">
             <figure className="relative w-[60px] aspect-[9/16] shadow-lg rounded-md overflow-hidden md:w-[100px] lg:w-[200px]">
               <Image
                 src={getMovieImageUrl(movie.poster_path, "w500")}
