@@ -48,7 +48,7 @@ function MovieItem({ movie }: { movie: SearchMovieResult }) {
     <figure className="grid gap-2">
       <div className="relative aspect-[9/16]">
         <Image
-          src={getMovieImageUrl(movie.poster_path)}
+          src={getMovieImageUrl(movie.poster_path, "w342")}
           alt={`poster of ${movie.title} image`}
           fill
         />
