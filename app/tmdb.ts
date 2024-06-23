@@ -1,0 +1,128 @@
+const API_KEY = process.env.TMDB_API_KEY;
+
+export interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection: any;
+  budget: number;
+  genres: Genre[];
+  homepage: string;
+  id: number;
+  imdb_id: string;
+  origin_country: string[];
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: SpokenLanguage[];
+  status: string;
+  tagline: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  credits: Credits;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface ProductionCompany {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+}
+
+export interface ProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+export interface SpokenLanguage {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
+}
+
+export interface Credits {
+  cast: Cast[];
+  crew: Crew[];
+}
+
+export interface Cast {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path?: string;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: number;
+}
+
+export interface Crew {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path?: string;
+  credit_id: string;
+  department: string;
+  job: string;
+}
+
+export interface SearchMovieResult {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+export async function searchMovie(query: string) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
+  );
+  const data = await response.json();
+
+  const movie = data.results[0];
+
+  return movie as SearchMovieResult;
+}
+
+export async function getMovieDetail(movieId: string) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=EN&append_to_response=credits,videos,similar`
+  );
+  const movieDetail = await response.json();
+  return movieDetail as Movie;
+}
+
+export function getMovieImageUrl(path: string, quality: string = "original") {
+  return `https://image.tmdb.org/t/p/${quality}${path}`;
+}
